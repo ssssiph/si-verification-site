@@ -10,14 +10,21 @@
     <div class="container">
         <img src="icon.jpg" alt="Logo" class="logo">
         <input type="text" id="username" placeholder="Введите ваш Roblox никнейм" oninput="checkInput()">
-        <button id="verifyBtn" onclick="verify()" disabled>Verify</button>
+        <button id="verifyBtn" onclick="verify()" disabled><div class="flex">Verify</div></button>
     </div>
 
     <script>
         function checkInput() {
             let username = document.getElementById("username").value;
             let button = document.getElementById("verifyBtn");
-            button.disabled = username.trim() === "";
+
+            if (username.trim() !== "") {
+                button.classList.remove("disabled");
+                button.disabled = false;
+            } else {
+                button.classList.add("disabled");
+                button.disabled = true;
+            }
         }
 
         function verify() {
