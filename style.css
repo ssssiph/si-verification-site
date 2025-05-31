@@ -21,34 +21,35 @@ body {
 }
 
 input {
-    width: 400px;
-    height: 50px;
-    padding: 15px;
-    font-size: 18px;
+    width: 350px;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
     background-color: #1e1e1e;
     color: white;
     border: 1px solid #555;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
 }
 
 button {
     margin-top: 15px;
-    width: 200px;
-    height: 50px;
-    font-size: 18px;
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
     background-color: #28a745;
     border: none;
     color: white;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
 }
 
-button:disabled {
-    background-color: #555;
-    cursor: default;
+button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
-button:hover:not(:disabled) {
+button:hover:not(.disabled) {
     background-color: #218838;
 }
