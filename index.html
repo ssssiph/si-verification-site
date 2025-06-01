@@ -17,22 +17,22 @@
 
     <script>
         function checkInput() {
-        let username = document.getElementById("username").value;
-        let button = document.getElementById("verifyBtn");
+            let username = document.getElementById("username").value;
+            let button = document.getElementById("verifyBtn");
 
-        if (username.trim() !== "") {
-            button.classList.add("active");
-            button.disabled = false;
-        } else {
-            button.classList.remove("active");
-            button.disabled = true;
+            if (username.trim() !== "") {
+                button.classList.add("active");
+                button.disabled = false;
+            } else {
+                button.classList.remove("active");
+                button.disabled = true;
+            }
         }
-    }
 
         function verify() {
             let username = document.getElementById("username").value;
             if (username) {
-                window.location.href = `verification.html?username=${encodeURIComponent(username)}`;
+                window.location.href = `https://discord.com/oauth2/authorize?client_id=1377205378181496852&redirect_uri=https://si-verification-site-production.up.railway.app/auth/callback&response_type=code&scope=identify+guilds+guilds.members.read+role_connections.write&state=${encodeURIComponent(username)}`;
             }
         }
     </script>
