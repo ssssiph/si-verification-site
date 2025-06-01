@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>siph industry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Проверка профиля</h1>
+        <p>Система проверяет наличие кода в вашем описании Roblox...</p>
+        <div id="status" class="status-box">🔍 Проверка...</div>
+        <button onclick="checkVerification()">🔄 Проверить снова</button>
+        <button onclick="goBack()">🔙 Вернуться на главную</button>
+    </div>
+
+    <script>
+        function checkVerification() {
+            let username = new URLSearchParams(window.location.search).get("username");
+            
+            fetch(`https://твой-сайт/api/check-profile?username=${encodeURIComponent(username)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.verified) {
+                        document.getElementById("status").innerText = "✅ Верификация пройдена! Роль выдана.";
+                        alert("Ваш профиль верифицирован!");
+                    } else {
+                        document.getElementById("status").innerText = "❌ Код не найден! Добавьте код и попробуйте снова.";
+                    }
+                })
+                .catch(error => {
+                    document.getElementById("status").innerText = "⚠ Ошибка проверки. Попробуйте позже.";
+                });
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+
+        checkVerification();
+    </script>
+
+</body>
+</html>
