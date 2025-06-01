@@ -10,16 +10,41 @@
 
     <div class="container">
         <h1>Проверка профиля</h1>
-        <p>Система проверяет наличие кода в вашем описании Roblox...</p>
-        <div id="status" class="status-box">🔍 Проверка...</div>
-        <button onclick="checkVerification()">🔄 Проверить снова</button>
+        <p>Добавьте этот код в описание вашего профиля Roblox, затем нажмите "Проверить".</p>
+        <div id="codeBox" class="code-box">Генерируется...</div>
+        <button onclick="generateCode()">🔄 Сгенерировать новый код</button>
+        <button onclick="copyCode()">📋 Скопировать код</button>
+        <button onclick="checkVerification()">✅ Проверить профиль</button>
+        <div id="status" class="status-box">⌛ Ожидание проверки...</div>
         <button onclick="goBack()">🔙 Вернуться на главную</button>
     </div>
 
     <script>
+        const words = ["alpha", "bravo", "delta", "echo", "foxtrot", "gamma", "helium", "kilo", "lima", "november"];
+
+        function generateCode() {
+            let code = Array.from({ length: Math.floor(Math.random() * (7 - 5 + 1)) + 5 }, () => 
+                words[Math.floor(Math.random() * words.length)]
+            ).join(" ");
+            document.getElementById("codeBox").innerText = code;
+            localStorage.setItem("verificationCode", code);
+        }
+
+        function copyCode() {
+            navigator.clipboard.writeText(document.getElementById("codeBox").innerText);
+            alert("Код скопирован!");
+        }
+
         function checkVerification() {
             let username = new URLSearchParams(window.location.search).get("username");
-            
+            if (!username) {
+                document.getElementById("status").innerText = "⚠ Никнейм не передан. Попробуйте снова.";
+                return;
+            }
+
+            let storedCode = localStorage.getItem("verificationCode") || "Код не найден!";
+            document.getElementById("status").innerText = `🔍 Проверяем профиль ${username} с кодом: "${storedCode}"...`;
+
             fetch(`https://твой-сайт/api/check-profile?username=${encodeURIComponent(username)}`)
                 .then(response => response.json())
                 .then(data => {
@@ -32,6 +57,7 @@
                 })
                 .catch(error => {
                     document.getElementById("status").innerText = "⚠ Ошибка проверки. Попробуйте позже.";
+                    console.error(error);
                 });
         }
 
@@ -39,7 +65,7 @@
             window.location.href = "index.html";
         }
 
-        checkVerification();
+        generateCode();
     </script>
 
 </body>
