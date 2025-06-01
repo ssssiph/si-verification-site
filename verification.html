@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>siph industry</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Верификация Roblox</h1>
+        <p>Выберите один из способов подтверждения аккаунта:</p>
+
+        <div class="verify-options">
+            <button class="bio-btn" onclick="verifyByBio()">Верификация через описание</button>
+            <button class="game-btn" onclick="verifyByGame()">Верификация через игру</button>
+        </div>
+    </div>
+
+    <script>
+        function verifyByBio() {
+            alert("Добавьте код в описание вашего профиля Roblox и нажмите 'Проверить' в Discord.");
+        }
+
+        function verifyByGame() {
+            window.location.href = "https://www.roblox.com/games/15476921533";
+        }
+    </script>
+
+</body>
+</html>
