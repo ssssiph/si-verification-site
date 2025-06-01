@@ -13,6 +13,9 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 h1 {
@@ -24,8 +27,19 @@ p {
     color: #b0b0b0;
 }
 
+input {
+    flex: 2;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #444;
+    border-radius: 5px;
+    background-color: #292929;
+    color: #ffffff;
+    text-align: center;
+}
+
 button {
-    width: 100%;
+    flex: 1;
     padding: 12px;
     font-size: 16px;
     border: none;
@@ -34,31 +48,17 @@ button {
     transition: 0.3s;
 }
 
-.bio-btn {
-    background-color: #03dac6;
-    color: #000;
-}
-
-.bio-btn:hover {
-    background-color: #018786;
-}
-
-.game-btn {
-    background-color: #bb86fc;
-    color: #000;
-}
-
-.game-btn:hover {
-    background-color: #9f5df7;
-}
-
 .verify-btn {
-    background-color: #ff0266;
+    background-color: #555;
     color: white;
 }
 
+.verify-btn.active {
+    background-color: #4CAF50;
+}
+
 .verify-btn:hover {
-    background-color: #c2185b;
+    opacity: 0.85;
 }
 
 .code-box, .status-box {
