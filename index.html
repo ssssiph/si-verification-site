@@ -30,11 +30,11 @@
         }
 
         function verify() {
-            let username = document.getElementById("username").value;
-            if (username) {
-                window.location.href = `https://discord.com/oauth2/authorize?client_id=1377205378181496852&redirect_uri=https://si-verification-site-production.up.railway.app/auth/callback&response_type=code&scope=identify+guilds+guilds.members.read+role_connections.write&state=${encodeURIComponent(username)}`;
-            }
-        }
+    let username = document.getElementById("username").value;
+    if (username) {
+        window.location.href = `https://discord.com/oauth2/authorize?client_id=1377205378181496852&redirect_uri=https%3A%2F%2Fsi-verification-site-production.up.railway.app%2Fauth%2Fcallback&response_type=code&scope=identify+guilds+guilds.members.read+role_connections.write&state=${encodeURIComponent(username)}`;
+    }
+}
     </script>
 </body>
 </html>
