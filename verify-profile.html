@@ -20,6 +20,7 @@
     </div>
 
     <script>
+        // Список случайных слов для генерации кода
         const words = ["alpha", "bravo", "delta", "echo", "foxtrot", "gamma", "helium", "kilo", "lima", "november"];
 
         function generateCode() {
@@ -45,10 +46,10 @@
             let storedCode = localStorage.getItem("verificationCode") || "Код не найден!";
             document.getElementById("status").innerText = `🔍 Проверяем профиль ${username} с кодом: "${storedCode}"...`;
 
-            fetch(`https://твой-сайт/api/check-profile?username=${encodeURIComponent(username)}&code=${encodeURIComponent(storedCode)}`)
+            fetch(`https://твой-сайт/api/check-profile?username=${encodeURIComponent(username)}`)
                 .then(response => response.json())
                 .then(data => {
-                    if (data.verified) {
+                    if (data.description && data.description.includes(storedCode)) {
                         document.getElementById("status").innerText = "✅ Верификация пройдена! Роль выдана.";
                         sendToDiscord(username);
                     } else {
@@ -87,6 +88,7 @@
             window.location.href = "index.html";
         }
 
+        // Генерируем код при загрузке страницы
         generateCode();
     </script>
 
