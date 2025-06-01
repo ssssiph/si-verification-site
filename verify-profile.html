@@ -45,12 +45,12 @@
             let storedCode = localStorage.getItem("verificationCode") || "Код не найден!";
             document.getElementById("status").innerText = `🔍 Проверяем профиль ${username} с кодом: "${storedCode}"...`;
 
-            fetch(`https://твой-сайт/api/check-profile?username=${encodeURIComponent(username)}`)
+            fetch(`https://твой-сайт/api/check-profile?username=${encodeURIComponent(username)}&code=${encodeURIComponent(storedCode)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.verified) {
                         document.getElementById("status").innerText = "✅ Верификация пройдена! Роль выдана.";
-                        alert("Ваш профиль верифицирован!");
+                        sendToDiscord(username);
                     } else {
                         document.getElementById("status").innerText = "❌ Код не найден! Добавьте код и попробуйте снова.";
                     }
@@ -59,6 +59,28 @@
                     document.getElementById("status").innerText = "⚠ Ошибка проверки. Попробуйте позже.";
                     console.error(error);
                 });
+        }
+
+        function sendToDiscord(username) {
+            fetch("https://твой-сайт/api/discord-verify", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username: username, verified_status: true })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("✅ Верификация успешно передана в Discord! Роль выдана.");
+                } else {
+                    alert("⚠ Ошибка при передаче данных в Discord.");
+                }
+            })
+            .catch(error => {
+                alert("❌ Ошибка связи с Discord API.");
+                console.error(error);
+            });
         }
 
         function goBack() {
