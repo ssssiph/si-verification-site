@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>siph industry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Генерация кода</h1>
+        <p>Скопируйте этот код и добавьте его в описание вашего профиля Roblox.</p>
+        <div id="codeBox" class="code-box">Генерируется...</div>
+        <button onclick="generateCode()">🔄 Сгенерировать новый код</button>
+        <button onclick="copyCode()">📋 Скопировать код</button>
+        <button onclick="goToVerify()">✅ Проверить профиль</button>
+    </div>
+
+    <script>
+        const words = ["alpha", "bravo", "delta", "echo", "foxtrot", "gamma", "helium", "kilo", "lima", "november"];
+        
+        function generateCode() {
+            let code = Array.from({ length: Math.floor(Math.random() * (7 - 5 + 1)) + 5 }, () => 
+                words[Math.floor(Math.random() * words.length)]
+            ).join(" ");
+            document.getElementById("codeBox").innerText = code;
+        }
+
+        function copyCode() {
+            navigator.clipboard.writeText(document.getElementById("codeBox").innerText);
+            alert("Код скопирован!");
+        }
+
+        function goToVerify() {
+            let username = new URLSearchParams(window.location.search).get("username");
+            window.location.href = `verify-profile.html?username=${encodeURIComponent(username)}`;
+        }
+
+        generateCode();
+    </script>
+
+</body>
+</html>
