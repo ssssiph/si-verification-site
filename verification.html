@@ -20,8 +20,9 @@
 
     <script>
         function verifyByBio() {
-            alert("Добавьте код в описание вашего профиля Roblox и нажмите 'Проверить' в Discord.");
-        }
+        let username = new URLSearchParams(window.location.search).get("username");
+        window.location.href = `verify-profile.html?username=${encodeURIComponent(username)}`;
+    }
 
         function verifyByGame() {
             window.location.href = "https://www.roblox.com/games/15476921533";
