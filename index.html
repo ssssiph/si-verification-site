@@ -17,17 +17,17 @@
 
     <script>
         function checkInput() {
-            let username = document.getElementById("username").value;
-            let button = document.getElementById("verifyBtn");
+        let username = document.getElementById("username").value;
+        let button = document.getElementById("verifyBtn");
 
-            if (username.trim() !== "") {
-                button.classList.remove("disabled");
-                button.disabled = false;
-            } else {
-                button.classList.add("disabled");
-                button.disabled = true;
-            }
+        if (username.trim() !== "") {
+            button.classList.add("active");
+            button.disabled = false;
+        } else {
+            button.classList.remove("active");
+            button.disabled = true;
         }
+    }
 
         function verify() {
             let username = document.getElementById("username").value;
