@@ -10,7 +10,9 @@
     <div class="container">
         <img src="icon.jpg" alt="Logo" class="logo">
         <input type="text" id="username" placeholder="Введите ваш Roblox никнейм" oninput="checkInput()">
-        <button id="verifyBtn" onclick="verify()" class="disabled" disabled><div class="flex">Verify</div></button>
+        <button id="verifyBtn" onclick="verify()" class="disabled" disabled>
+            <div class="flex">Verify</div>
+        </button>
     </div>
 
     <script>
@@ -30,7 +32,7 @@
         function verify() {
             let username = document.getElementById("username").value;
             if (username) {
-                window.location.href = `https://твой-сайт/api/verify?username=${username}`;
+                window.location.href = `verification.html?username=${encodeURIComponent(username)}`;
             }
         }
     </script>
